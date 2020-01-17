@@ -237,13 +237,8 @@ class Validate():
         os.system('bert-serving-terminate -port 5555')'''
 
 if __name__ == '__main__' :
-    valid = Validate(validation_limit=100000)
-
     #Thread(target=valid.start_bert_server,daemon=True).start() # start the server in the background
-
-    #valid = Validate(validation_limit=10)
+    valid = Validate(validation_limit=100000)
     valid.validate()
     #valid.stop_bert_server()
-    #os.system('bert-serving-terminate -port 5555')
-    #pid = subprocess.check_output('ps ax | grep validate_bert.sh' ,shell=True).split()[0].decode('utf-8')
-    #os.system('kill ' + pid)
+ 
