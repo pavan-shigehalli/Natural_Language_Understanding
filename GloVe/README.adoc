@@ -1,0 +1,129 @@
+== Global Vectors for Word Representation (GloVe) embedding
+
+Please refer to <<glove>> for a detailed theory behind GloVe.
+
+This repository contains the python scripts to train the GloVe word embeddings from
+`../Training_Data/dataset.csv`. This is downloaded from http://www.research.ibm.com/haifa/dept/vst/debating_data.shtml
+
+`config.py` contains the configuration needed to run other scripts.
+
+`tf_glove_train.py` is a modified version of the code downloaded from
+https://github.com/GradySimon/tensorflow-glove. This is a supporting library.
+
+`tf_glove.py` contains the methods to train/load a GloVe word embedding
+
+// `tripletgen.py` creates the triplets according to <<ibm>>.
+
+Above python scripts run only in *python3* environment and
+need an additional python library `progressbar2` to
+display the progress of the script. This can be installed with pip3
+
+[source, bash]
+----
+$ pip3 install progressbar2
+----
+
+= Usage
+There are number of ways to train the embedding.
+If you are running the program on a desktop and would like to
+set an upper limit on the CPU temperature, and the system memory usage,
+then please run `train.sh`.
+If you do not care about the temperature and memory then please run
+`train_glove.py`
+Or you can use the following code snippet.
+
+.Train word embedding
+[source, python]
+----
+import tf_glove
+import config
+
+Em = tf_glove.GloveEmbeddings(\
+  train_file = config.GLOVE_TRAIN, \
+  saved_model = None, \
+  embedding_size=300, context_size=10)
+
+Em.tf_train(num_epochs=100, save_model= config.NEW_GLOVE_MODEL)
+----
+
+The trained model can be loaded with the following code snippet
+
+.Load the saved model
+[source, python]
+----
+import tf_glove
+import config
+
+Em = tf_glove.GloveEmbeddings(\
+  train_file = None, \
+  saved_model = config.SAVED_GLOVE_MODEL )
+
+Em.load_saved_model()
+print(Em.embedding_for('word')) # Get embedding for the trained word
+----
+
+The performance of a trained embedding is validated with the sentence triplets. A sentence triplet
+is a set of three sentences where two sentences are semantically closer than the
+third.
+
+`validate_glove_word_embed.py` measures the performance of the GloVe word embeddings.
+The script loads the trained word embedding for every Word
+and for every sentence in the triplet. Every sentence is thus represented
+as a matrix of embedding. Various types of distances between these matrices
+determine the similarity between the sentences. The script
+computes the similarity measure with *L1*, *L2*, *Minskowiski*
+and *chebyshev* distances. The result is logged in `/logs`.
+
+On the other hand, `validate_glove_sen_embed.py` measures the performance of the
+GloVe sentence embedding. A sentence embedding is the mean of word embedding in a
+sentence. In addition to the previously mentioned distance measures,
+sentence embedding Performance is also measured for *cosine* distance.
+
+To control the CPU temperature and the system memory, please run the respective
+bash scripts. 
+
+////
+Following table summarizes the triplet counts generated From `dataset.csv`.
+
+[%header,cols=3]
+|===
+|Triplet category
+|Triplet sentence count
+|Triplet titles count
+
+|Train
+|1860274
+|64440
+
+|Validation
+|232962
+|8079
+
+|Test
+|231902
+|7965
+
+|Total count
+|2325138
+|80484
+
+|Grand total
+2+^|2405622
+
+|===
+
+
+[bibliography]
+== References
+- [[[ibm,1]]] Liat Ein Dor , Yosi Mass , Alon Halfon, Elad Venezian,
+  Ilya Shnayderman, Ranit Aharonov and Noam Slonim "Learning Thematic Similarity
+  Metric Using Triplet Networks", Proceedings of the 56th Annual Meeting of the
+  Association for Computational Linguistics (Short Papers), pages 49–54
+  Melbourne, Australia, July 15 - 20, 2018.
+////
+
+[bibliography]
+== References
+- [[[glove,1]]] Jeffrey Pennington, Richard Socher, and Christopher D. Manning. Glove: Global
+vectors for word representation. In Empirical Methods in Natural Language
+Processing (EMNLP), pages 1532–1543, 2014.
