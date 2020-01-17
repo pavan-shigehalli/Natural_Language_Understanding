@@ -1,4 +1,4 @@
-== Global Vectors for Word Representation (GloVe) embedding
+= Global Vectors for Word Representation (GloVe) embedding
 
 Please refer to <<glove>> for a detailed theory behind GloVe.
 
@@ -23,7 +23,7 @@ display the progress of the script. This can be installed with pip3
 $ pip3 install progressbar2
 ----
 
-= Usage
+== Usage
 There are number of ways to train the embedding.
 If you are running the program on a desktop and would like to
 set an upper limit on the CPU temperature, and the system memory usage,
