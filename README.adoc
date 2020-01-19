@@ -1,0 +1,20 @@
+== Natural Language Understanding in Argumentative Dialogue Systems
+
+This repository contains the python scripts for various natural language
+processing models which I worked on my master's thesis
+link:https://oparu.uni-ulm.de/xmlui/handle/123456789/23779[ Natural Language
+Understanding in Argumentative Dialogue System]
+
+This thesis presents various techniques to implement the natural language
+understanding in argumentative dialog systems. We examine various models like
+the ones which exploit the linguistic properties of the English language such as,
+WordNet, models which rely on the vector
+representation of words like GloVe, BERT, with different similarity measurement
+techniques. In order to
+structure the user responses, we formalise the user interaction as an argument game.
+And we explore chat bot designs in order to understand the user intents in the game.
+The models are tested for the data obtained from Wikipedia pages. We also collect the
+real user responses and evaluate the model. The output indicates that, the training data,
+model architecture and the similarity measurement techniques play a significant role in
+the performance. In addition, the models based on linguistic properties perform better
+than the ones based on vector representation.
