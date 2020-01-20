@@ -6,11 +6,26 @@ link:https://oparu.uni-ulm.de/xmlui/handle/123456789/23779[ Natural Language
 Understanding in Argumentative Dialogue System]
 
 This thesis presents various techniques to implement the natural language
-understanding in argumentative dialog systems. We examine various models like
+understanding in argumentative dialog systems. We have examined various models like
 the ones which exploit the linguistic properties of the English language such as,
-WordNet, models which rely on the vector
-representation of words like GloVe, BERT, with different similarity measurement
-techniques. In order to
+WordNet, models which rely on the vector representation of words like GloVe, BERT.
+The performance of these models are measured with different similarity measurement
+techniques. The similarity measurement techniques include various distance
+measurements and certain aspects of IBM project debater.
+
+We use the sample Wikipedia dataset released by
+link:http://www.research.ibm.com/haifa/dept/vst/debating_data.shtml[IBM project debater]
+to train GloVe. BERT trained model is downloaded from the official
+link:https://github.com/google-research/bert[Google release]. WordNet model is
+downloaded from the NLTK package.
+ 
+For the performance measurement of GloVe, BERT, WordNet and similarity
+measurement techniques of IBM project debater, we convert this dataset into
+a dataset of sentence triplets. A sentence triplet is a set of three sentences
+where two sentences are semantically closer than the third. A successfully trained
+model should identify the relation between the triplets.
+
+In order to
 structure the user responses, we formalise the user interaction as an argument game.
 And we explore chat bot designs in order to understand the user intents in the game.
 The models are tested for the data obtained from Wikipedia pages. We also collect the
@@ -18,3 +33,15 @@ real user responses and evaluate the model. The output indicates that, the train
 model architecture and the similarity measurement techniques play a significant role in
 the performance. In addition, the models based on linguistic properties perform better
 than the ones based on vector representation.
+
+[bibliography]
+== References
+- [[[pavan,1]]] Shigehalli, Pavan Rajashekhar (2020): Natural language understanding
+  in argumentative dialogue systems. Open Access Repositorium der Universität Ulm.
+  http://dx.doi.org/10.18725/OPARU-23716
+- [[[ibm,1]]] Liat Ein Dor , Yosi Mass , Alon Halfon, Elad Venezian,
+  Ilya Shnayderman, Ranit Aharonov and Noam Slonim "Learning Thematic Similarity
+  Metric Using Triplet Networks", Proceedings of the 56th Annual Meeting of the
+  Association for Computational Linguistics (Short Papers), pages 49–54
+  Melbourne, Australia, July 15 - 20, 2018.
+
