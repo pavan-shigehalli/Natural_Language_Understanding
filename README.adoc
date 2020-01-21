@@ -6,7 +6,7 @@ link:https://oparu.uni-ulm.de/xmlui/handle/123456789/23779[ Natural Language
 Understanding in Argumentative Dialogue System]
 
 === Introduction
-The following figure <<dialgoue_system>> shows the general structure of a
+The following figure <<dialogue_system>> shows the general structure of a
 dialogue system (DS).
 
 [#dialogue_system]
