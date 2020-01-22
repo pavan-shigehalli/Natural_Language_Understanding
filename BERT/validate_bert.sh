@@ -21,7 +21,7 @@ cd ..
 parent_dir=$(pwd)
 
 cd /tmp
-bert-serving-start -model_dir $parent_dir/Trained_Model/BERT/uncased_L-24_H-1024_A-16 -max_seq_len=128 >> /tmp/bert_server.log &
+bert-serving-start -model_dir $parent_dir/Trained_Model/BERT/uncased_L-12_H-768_A-12 -max_seq_len=128 >> /tmp/bert_server.log &
 sleep 5
 cd $script_path
 echo "[$(date) ] Program is starting" >> $script_path/$log_file
