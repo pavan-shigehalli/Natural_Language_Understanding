@@ -1,0 +1,46 @@
+== Bidirectional Encoder Representations from Transformers(BERT)
+
+This is the original repo for BERT https://github.com/google-research/bert. This
+repo also provides the pre-trained BERT models.
+There are two pre-trained models and can be found in ../Trained_Model/BERT/.
+The scripts use *uncased_L-12_H-768_A-12* as it is a smaller network and hence it
+is faster than the other one. If you want to work with the larger model, please change
+the name in `config.py`.
+
+`config.py` contains the configuration needed to execute the other scripts.
+`validate_bert.py` measures the performance of BERT sentence embedding with
+the sentence triplets. BERT embedding is said to be working good if it successfully
+recognizes the triplet relationship. The report will be stored in `/logs`.
+
+=== Usage
+If you are running the program on a desktop and would like to
+set an upper limit on the CPU temperature, and the system memory usage,
+then please run `validate_bert.sh`.
+If you do not care about the temperature and memory then please execute the
+following steps,
+
+Start BERT server
+[source, bash]
+----
+cd /tmp
+$parent_dir=#Please specify the parent directory
+bert-serving-start -model_dir $parent_dir/Trained_Model/BERT/uncased_L-12_H-768_A-12 -max_seq_len=128 >> /tmp/bert_server.log &
+----
+
+If you wish to work with *uncased_L-24_H-1024_A-16*, then please replace the name *uncased_L-12_H-768_A-12*.
+Please start the server in system temporary directory as it creates too many temporary files.
+
+run validate_bert.py
+[source, bash]
+----
+$ python3 validate_bert.py
+----
+
+Or please use the following code snippet
+[source, python]
+----
+import validate_bert.py
+
+valid = Validate(validation_limit=100000) # You can set any limit or ignore this option
+valid.validate()
+----
