@@ -66,6 +66,106 @@ Idebate.org is operated by the International Debate
 Education Association (IDEA), a global Network of organisations who educate people
 in debate.
 
+=== Pre requisites
+The following packages are needed to run the scripts. Alternatively, docker images
+are also added.
+
+* Tensorflow 1.13.0
+* Numpy
+* NLTK
+* BERT server and BERT client
+* Progressbar
+
+It is recommended to install these packages inside a virtual environment.
+Create a new virtual environment by choosing a Python3 interpreter and making
+a ./venv directory to hold it:
+
+[source, bash]
+----
+$ virtualenv --system-site-packages -p python3 ./venv
+----
+
+Activate the virtual environment
+
+[source, bash]
+----
+$ source ./venv/bin/activate
+----
+
+Install Tensorflow 1.13.0
+[source, bash]
+----
+(venv) $ pip install tensorflow==1.13.0
+----
+
+Install Numpy
+[source, bash]
+----
+(venv) $ pip install numpy
+----
+
+Install NLTK
+[source, bash]
+----
+(venv) $ pip install nltk
+----
+
+Install BERT server
+[source, bash]
+----
+(venv) $ pip install bert-serving-server
+----
+
+Install BERT client
+[source, bash]
+----
+(venv) $ pip install bert-serving-client
+----
+
+Install progress bar. This package is used to display the progress of the code.
+The methods relating to this package can be commented out.
+[source, bash]
+----
+(venv) $ pip3 install progressbar2
+----
+
+=== Dataset
+
+The scripts depend on /Training_Data/dataset.csv from
+link:http://www.research.ibm.com/haifa/dept/vst/debating_data.shtml[IBM project debater]
+for training and validating the models. This data set contains 692 Wikipedia
+pages of May 2017 where, article title, section title and sentences are arranged in a
+CSV format. This data set is transformed into triplet sentences and triplet titles according
+to <<ibm>> (Can be found in /Training_Data/triplets). Following table summarizes the
+triplet counts generated From `dataset.csv`.
+
+[%header,cols=3]
+|===
+|Triplet category
+|Triplet sentence count
+|Triplet titles count
+
+|Train
+|1860274
+|64440
+
+|Validation
+|232962
+|8079
+
+|Test
+|231902
+|7965
+
+|Total count
+|2325138
+|80484
+
+|Grand total
+2+^|2405622
+
+|===
+
 
 [bibliography]
 == References
