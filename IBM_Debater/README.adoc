@@ -1,0 +1,66 @@
+== Thematic similarity measures in IBM project debater
+
+Various components of IBM project debater were published in many conferences.
+This repository contains the scripts to implement one such component <<ibm>>.
+The details of the implementation can found in the sections 4.4 and 5.1.5 of the
+thesis report.
+
+`config.py` contains the configurations to execute rest of the scripts.
+
+`progress.py` is used to track the execution of a program.
+
+`tf_glove.py` and `tf_glove_train.py` are the exact scripts in `/GloVe`
+
+A trained GloVe model is required to implement this module.
+
+Execute `train_lstm_tri_net.py` to train the triplet network. This network trains
+using already trained GloVe model and the training data in `/Training_Data/triplets/`.
+
+Following are the default parameters of the code taken directly from <<ibm>>
+
+[source, bash]
+----
+state_size = 300,  # size of LSTM cell state
+num_of_features = 300,  # GloVe word embedding size
+dropout = 0.8,  # LSTM output dropout
+attention_length = 200, # size of attention nodes
+max_sentence_length = 50,  # maximum number of words allowed in a sentence
+embedding_size = 300,  # size of the embedding used in GloVe
+
+----
+
+Following are the parameters set by us and can be changed according to available
+resources.
+[source, bash]
+----
+batch_size = 128,  # size of mini batch
+num_of_epochs = 1,  # number of iteration over the dataset
+learning_rate = 0.00001,  # Learning rate
+max_num_of_batches_in_ram = 4,  # maximum number of batches to store in RAM
+train_limit = 10,  # set the cap on number of trainable triplets in multiple of the batch size
+num_of_saves_per_epoch = 5 # number of times to save the model during an epoch.
+----
+
+`train_lstm_tri_net_multithread.py` has the exact same functionality as that of
+`train_lstm_tri_net.py`. However, it can execute data processing and training in
+parallel thereby reduces the time of execution.
+
+If you are running the program on a desktop and would like to
+set an upper limit on the CPU temperature, and the system memory usage,
+then please run `train.sh`. Please include the `python` program you would
+like to execute in `train.sh`.
+
+`validate_lstm_tri_net.py` measures the performance of the trained model with
+the triplet data set classified for validation. The reports are stored in `/logs`.
+
+`validate_lstm_tri_net.sh` is similar to `train.sh` but used for the validation.
+
+
+
+[bibliography]
+== References
+- [[[ibm,2]]] Liat Ein Dor , Yosi Mass , Alon Halfon, Elad Venezian,
+  Ilya Shnayderman, Ranit Aharonov and Noam Slonim "Learning Thematic Similarity
+  Metric Using Triplet Networks", Proceedings of the 56th Annual Meeting of the
+  Association for Computational Linguistics (Short Papers), pages 49–54
+  Melbourne, Australia, July 15 - 20, 2018.
