@@ -1,0 +1,1 @@
+=== Directory for stroring images used by README
