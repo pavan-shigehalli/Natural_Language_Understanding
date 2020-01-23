@@ -1,0 +1,24 @@
+== WordNet
+
+link:https://wordnet.princeton.edu/[WordNet] <<wn>> is a lexical database in English.
+It consists of more than 117000 Vocabulary, grouped according to the four parts of
+speech (POS), noun, adjective, verb and adverb into a set of synonyms (synsets).
+Each group of synsets is linked together
+according to their semantic relations. WordNet can also be described as a thesaurus but
+with more complex relations among the vocabulary. NLTK python package has inbuilt
+WorNet modules. The scripts here measures the performance of WordNet with the triplet
+data set.
+
+`config.py` contains the configurations needed to run the other scrripts.
+
+`validate_wordnet.py` measures the performance of WordNet.
+
+If you are running the program on a desktop and would like to
+set an upper limit on the CPU temperature, and the system memory usage,
+then please run `validate_wordnet.sh`
+
+
+[bibliography]
+== References
+- [[[wn,1]]] George A. Miller. Wordnet: A lexical database for english. Commun. ACM,
+38(11):39–41, November 1995.
