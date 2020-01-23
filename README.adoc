@@ -6,24 +6,22 @@ link:https://oparu.uni-ulm.de/xmlui/handle/123456789/23779[ Natural Language
 Understanding in Argumentative Dialogue System]
 
 === Introduction
-The following figure <<dialogue_system>> shows the general structure of a
+The following figure shows the general structure of a
 dialogue system (DS).
 
-[#dialogue_system]
 .General design of a dialogue system
-image::dialogue_system.png[]
+image::images/DS.png[]
 
 Automatic Speech Recognition (ASR) converts the user speech
 to the text. The text is then analyzed and understood in Natural Language
 Understanding (NLU). Dialogue manager keeps track of the input and the corresponding
 responses. Natural Language Generation (NLG) generates the appropriate responses,
 which are converted to the speech by text to speech. The goal of the thesis is to
-implement NLU for an argumentative DS. The following figure <<NLU_module>>
+implement NLU for an argumentative DS. The following figure
 shows the NLU structure.
 
-[#NLU_module]
 .Design of Natural Language Understanding module in an argumentative dialog system. This consists three components, utterance mapper, database and intent classifier.
-image::NLU_module.png[]
+image::images/nlu.png[]
 
 The NLU design is influenced by the way humans understand an utterance in a discussion.
 In a discussion, we argue based on our knowledge base about the topic. Richer the
