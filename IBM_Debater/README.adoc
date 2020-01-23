@@ -59,7 +59,7 @@ the triplet data set classified for validation. The reports are stored in `/logs
 
 [bibliography]
 == References
-- [[[ibm,2]]] Liat Ein Dor , Yosi Mass , Alon Halfon, Elad Venezian,
+- [[[ibm,1]]] Liat Ein Dor , Yosi Mass , Alon Halfon, Elad Venezian,
   Ilya Shnayderman, Ranit Aharonov and Noam Slonim "Learning Thematic Similarity
   Metric Using Triplet Networks", Proceedings of the 56th Annual Meeting of the
   Association for Computational Linguistics (Short Papers), pages 49–54
