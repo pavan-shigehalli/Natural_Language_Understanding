@@ -9,7 +9,7 @@ Understanding in Argumentative Dialogue System]
 The following figure shows the general structure of a
 dialogue system (DS).
 
-.General design of a dialogue system
+.General design of a dialogue system. Source : https://www.semanticscholar.org/paper/Spoken-Dialogue-Systems-2.1-Classifications-of/7a3c58ef132157da8e8de0f2ca2ca4c4fffdb9ef
 image::images/DS.png[]
 
 Automatic Speech Recognition (ASR) converts the user speech
@@ -20,7 +20,7 @@ which are converted to the speech by text to speech. The goal of the thesis is t
 implement NLU for an argumentative DS. The following figure
 shows the NLU structure.
 
-.Design of Natural Language Understanding module in an argumentative dialog system. This consists three components, utterance mapper, database and intent classifier.
+.Design of Natural Language Understanding module in an argumentative dialog system. This consists three components,utterance mapper, database and intent classifier. Source : <<pavan>>
 image::images/nlu.png[]
 
 The NLU design is influenced by the way humans understand an utterance in a discussion.
