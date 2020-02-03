@@ -32,7 +32,7 @@ class LSTM():
     # LSTM triplet network saver configuratios.
     parent_dir = dirname(os.getcwd())
 
-    MODEL_DIR = parent_dir + '/Trained_Model/lstm/'
+    MODEL_DIR = parent_dir + '/Trained_Model/IBM_Debater/'
     SAVED_LSTM = MODEL_DIR + 'model.ckpt'
     NEW_LSTM = MODEL_DIR + 'model.ckpt'
     NEW_LSTM_FILE_STACK = MODEL_DIR + 'datastack/'
