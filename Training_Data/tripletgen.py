@@ -10,6 +10,7 @@ from functools import reduce
 import progressbar
 
 from config import Glove as config
+from config import Triplet as triplet_config
 
 class TripletGen():
 
@@ -73,9 +74,17 @@ class TripletGen():
         self.__max_title_triplet += sentence_count
 
 
+    def __ncr(self, n, r):
+        ''' computes combinatorics '''
+        r = min(r, n-r)
+        numer = reduce(op.mul, range(n, n-r, -1), 1)
+        denom = reduce(op.mul, range(1, r+1), 1)
+        return int(numer / denom)
+
+
     def __log_writer_init(self):
         ''' Initiates the log file '''
-        file = open(self.__current_dir + '/' + self.__logfile, 'w')
+        file = open(self.__current_dir + self.__logfile, 'w')
         file_writer = csv.writer(file)
         file_writer.writerow(['Triplet category', 'triplet count' ])
         file.close()
@@ -260,10 +269,7 @@ class TripletGen():
     def generate_triplet_sen(self, trainset, validation_set, test_set):
 
         self.__current_dir = self.outfile_dir + 'triplet_sen/'
-        try :
-            os.mkdir(self.__current_dir)
-        except OSError:
-            pass
+        os.system('mkdir -p ' + self.__current_dir)
 
         self.__trainset = [0, int((trainset/100)*self.__max_sen_triplet)]
 
@@ -322,7 +328,7 @@ class TripletGen():
         status = self.__write_triplet_sen(article, section_list, sentence_list)
 
         bar.finish()
-        log = csv.writer(open(self.__current_dir + '/' + self.__logfile, 'a'))
+        log = csv.writer(open(self.__current_dir + self.__logfile, 'a'))
         log.writerow(['test', self.__sen_triplet_count - self.__true_train_count - \
         self.__true_validation_count])
         log.writerow(['Total count', self.__sen_triplet_count])
@@ -330,17 +336,10 @@ class TripletGen():
         print('{} number of triplet sentences are formed'.format(self.__sen_triplet_count))
 
 
-    def __ncr(self, n, r):
-        ''' computes combinatorics '''
-        r = min(r, n-r)
-        numer = reduce(op.mul, range(n, n-r, -1), 1)
-        denom = reduce(op.mul, range(1, r+1), 1)
-        return int(numer / denom)
-
 
 def main():
-    datafile = config.GLOVE_TRAIN
-    triplet_dir = config.TRIPLET_DIR
+    datafile = triplet_config.WIKI_DATA
+    triplet_dir = triplet_config.TRIPLET_DIR
     trip = TripletGen(datafile, triplet_dir)
     trip.generate_triplet_sen(trainset=80, validation_set=10, test_set=10)
     trip.generate_triplet_title(trainset=80, validation_set=10, test_set=10)

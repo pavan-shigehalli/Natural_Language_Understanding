@@ -5,9 +5,21 @@ import os
 from os.path import dirname
 
 class Triplet():
-    parent_dir = dirname(os.getcwd())
+    current_dir = os.getcwd()
+    parent_dir = dirname(current_dir)
 
     LOG_FILE = parent_dir + '/Training_Data/triplets'
+    WIKI_DATA = parent_dir + '/Training_Data/dataset.csv'
+    # absolute path of the directory to store the generated triplets
+    TRIPLET_DIR = current_dir + '/triplets/'
+    TRIPLET_SEN_DIR = 'triplet_sen/'
+    TRIPLET_TITLE_DIR = 'triplet_title/'
+    TRIPLET_TRAIN_DIR = 'train/' # relative directory
+    TRIPLET_VALID_DIR = 'validation/'
+    TRIPLET_TEST_DIR = 'test/'
+    TRIPLET_SEN_LOG = TRIPLET_DIR + TRIPLET_SEN_DIR + 'triplet_count.csv'
+    TRIPLET_TITLE_LOG = TRIPLET_DIR + TRIPLET_TITLE_DIR + 'triplet_count.csv'
+
 
 class Glove():
 
