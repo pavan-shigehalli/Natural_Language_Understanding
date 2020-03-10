@@ -22,11 +22,11 @@ from datetime import datetime
 import logging
 import subprocess
 
-from progress import ETA
+from .progress import ETA
 
-from config import Glove as glove_config
-from config import LSTM as lstm_config
-import tf_glove
+from .__init__ import Glove as glove_config
+from .__init__ import LSTM as lstm_config
+from ..GloVe.tf_glove import GloveEmbeddings
 
 logging.basicConfig(filename=lstm_config.TRAIN_LOG, format='[ %(asctime)s ] %(message)s', level=logging.DEBUG)
 
@@ -74,7 +74,7 @@ class lstm_trip_train():
         self.__batch_count = 0 # counts the number of batches or triplets generated
 
         # load the saved embeddings
-        self.__embed = tf_glove.GloveEmbeddings(\
+        self.__embed = GloveEmbeddings(\
         train_file = None, \
         saved_model = glove_config.SAVED_GLOVE_MODEL )
         self.__embed.load_saved_model()

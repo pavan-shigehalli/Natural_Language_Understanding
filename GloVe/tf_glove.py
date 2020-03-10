@@ -8,8 +8,9 @@ import csv
 
 import tensorflow as tf
 
-import tf_glove_train
-from config import Glove as config
+from .tf_glove_train import GloVeModel
+from .__init__ import Glove as config
+#from config import Glove as config
 
 
 class DataNotfoundError(Exception):
@@ -79,7 +80,7 @@ class GloveEmbeddings():
 
         self.__form_corpus_from_csv()
 
-        tf_model = tf_glove_train.GloVeModel(\
+        tf_model = GloVeModel(\
         embedding_size=self.embedding_size, \
         context_size=self.context_size, \
         max_vocab_size=self.max_vocab_size,\
