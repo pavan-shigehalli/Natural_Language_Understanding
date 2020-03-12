@@ -7,7 +7,8 @@ from os.path import dirname
 
 class Glove():
 
-    parent_dir = dirname(os.getcwd())
+    parent_dir = os.getcwd()
+    parent_dir += '/Natural_Language_Understanding'
     # Word embedding saver configuration
     GLOVE_TRAIN = parent_dir + '/Training_Data/dataset.csv'
     MODEL_DIR = parent_dir + '/Trained_Model/GloVe'

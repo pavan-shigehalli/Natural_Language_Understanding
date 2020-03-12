@@ -24,9 +24,9 @@ import subprocess
 
 from .progress import ETA
 
-from .__init__ import Glove as glove_config
 from .__init__ import LSTM as lstm_config
 from ..GloVe.tf_glove import GloveEmbeddings
+from ..GloVe.__init__ import Glove as glove_config
 
 logging.basicConfig(filename=lstm_config.TRAIN_LOG, format='[ %(asctime)s ] %(message)s', level=logging.DEBUG)
 
