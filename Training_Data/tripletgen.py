@@ -9,8 +9,7 @@ from functools import reduce
 
 import progressbar
 
-from config import Glove as config
-from config import Triplet as triplet_config
+from .__init__ import Triplet as triplet_config
 
 class TripletGen():
 

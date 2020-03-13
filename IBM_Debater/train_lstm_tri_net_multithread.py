@@ -32,6 +32,7 @@ from .progress import ETA
 from .__init__ import LSTM as lstm_config
 from ..GloVe.tf_glove import GloveEmbeddings
 from ..GloVe.__init__ import Glove as glove_config
+from ..Training_Data.__init__ import Triplet as triplet_config
 
 logging.basicConfig(filename=lstm_config.TRAIN_LOG, format='[ %(asctime)s ] %(message)s',\
 level=logging.INFO)
@@ -122,10 +123,10 @@ class lstm_trip_train():
     def train_limit(self,limit) :
         # Set various train limit parameters
         # Read triplet log files
-        with open(glove_config.TRIPLET_SEN_LOG) as f :
+        with open(triplet_config.TRIPLET_SEN_LOG) as f :
             next(csv.reader(f))
             triplet_sen_count = int(next(csv.reader(f))[1])
-        with open(glove_config.TRIPLET_TITLE_LOG) as f :
+        with open(triplet_config.TRIPLET_TITLE_LOG) as f :
             next(csv.reader(f))
             triplet_title_count = int(next(csv.reader(f))[1])
             self.max_train_triplet_count = triplet_sen_count + triplet_title_count
@@ -164,14 +165,14 @@ class lstm_trip_train():
     def __prepare_files(self):
         ''' Create a list of triplet files to be used for training '''
 
-        path = glove_config.TRIPLET_DIR + glove_config.TRIPLET_SEN_DIR + glove_config.TRIPLET_TRAIN_DIR
+        path = triplet_config.TRIPLET_DIR + triplet_config.TRIPLET_SEN_DIR + triplet_config.TRIPLET_TRAIN_DIR
         files = sorted(os.listdir(path))
         file_list = []
         for file in files :
             file_list.append(path + file)
         self.__train_files.update({'sentence_file':file_list})
 
-        path  = glove_config.TRIPLET_DIR + glove_config.TRIPLET_TITLE_DIR + glove_config.TRIPLET_TRAIN_DIR
+        path  = triplet_config.TRIPLET_DIR + triplet_config.TRIPLET_TITLE_DIR + triplet_config.TRIPLET_TRAIN_DIR
         files = sorted(os.listdir(path))
         file_list = []
         for file in files :

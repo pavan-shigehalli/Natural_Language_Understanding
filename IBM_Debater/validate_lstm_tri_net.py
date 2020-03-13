@@ -14,9 +14,9 @@ import logging
 import progressbar
 import psutil
 
-from config import Glove as glove_config
-from config import LSTM as lstm_config
-import tf_glove
+from .__init__ import LSTM as lstm_config
+from ..GloVe.tf_glove import GloveEmbeddings
+from ..GloVe.__init__ import Glove as glove_config
 
 logging.basicConfig(filename=lstm_config.REPORT_LOG, level=logging.INFO, format='%(levelname)s: %(asctime)s : %(message)s')
 
@@ -57,7 +57,7 @@ class Validate_LSTM():
         self.__end_of_data = False
 
         # load embedding model
-        self.__embed = tf_glove.GloveEmbeddings(\
+        self.__embed = GloveEmbeddings(\
         train_file = None, \
         saved_model = glove_config.SAVED_GLOVE_MODEL )
         self.__embed.load_saved_model()
@@ -394,7 +394,7 @@ class Validate_LSTM():
 
         cellxm_bw = tf.nn.rnn_cell.LSTMCell(self.state_size, state_is_tuple=True, reuse=True, name='lstm_bw', dtype=tf.float64)
         cellxm_bw = tf.nn.rnn_cell.DropoutWrapper(cellxm_bw, output_keep_prob=self.dropout)
-        
+
         state_fw, state_bw = self.__lstm_state_tuple(self.statexm_fw_placeholder, self.statexm_bw_placeholder)
         outputxm, (self.statexm_fw, self.statexm_bw) = tf.nn.bidirectional_dynamic_rnn(cellxm_fw, cellxm_bw, \
         self.batchXm_placeholder, initial_state_fw=state_fw,initial_state_bw=state_bw, dtype=tf.float64)

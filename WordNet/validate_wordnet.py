@@ -16,8 +16,8 @@ from nltk.corpus import wordnet as wn
 import numpy as np
 import progressbar
 
-from config import Glove as glove_config
-from config import WordNet as wn_config
+from .__init__ import WordNet as wn_config
+from ..Training_Data.__init__ import Triplet as triplet_config
 
 logging.basicConfig(filename=wn_config.LOG_FILE, format='[ %(asctime)s ] %(message)s',\
 level=logging.INFO)
@@ -35,17 +35,17 @@ class Validate() :
 
         self.pass_count = { 'path' : 0, 'wup' : 0, 'lch' :0, 'UMBC': 0 }
 
-        self.sen_file = csv.reader(open(glove_config.TRIPLET_DIR + glove_config.TRIPLET_SEN_DIR + \
-        glove_config.TRIPLET_VALID_DIR + 'triplet_0.csv' ))
+        self.sen_file = csv.reader(open(triplet_config.TRIPLET_DIR + triplet_config.TRIPLET_SEN_DIR + \
+        triplet_config.TRIPLET_VALID_DIR + 'triplet_0.csv' ))
 
-        self.title_file = csv.reader(open(glove_config.TRIPLET_DIR + glove_config.TRIPLET_TITLE_DIR + \
-        glove_config.TRIPLET_VALID_DIR + 'triplet_0.csv' ))
+        self.title_file = csv.reader(open(triplet_config.TRIPLET_DIR + triplet_config.TRIPLET_TITLE_DIR + \
+        triplet_config.TRIPLET_VALID_DIR + 'triplet_0.csv' ))
 
-        with open(glove_config.TRIPLET_SEN_LOG) as f :
+        with open(triplet_config.TRIPLET_SEN_LOG) as f :
             next(csv.reader(f))
             next(csv.reader(f))
             triplet_sen_count = int(next(csv.reader(f))[1])
-        with open(glove_config.TRIPLET_TITLE_LOG) as f :
+        with open(triplet_config.TRIPLET_TITLE_LOG) as f :
             next(csv.reader(f))
             next(csv.reader(f))
             triplet_title_count = int(next(csv.reader(f))[1])

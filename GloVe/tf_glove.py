@@ -9,8 +9,7 @@ import csv
 import tensorflow as tf
 
 from .tf_glove_train import GloVeModel
-from .__init__ import Glove as config
-#from config import Glove as config
+from .__init__ import Glove as glove_config
 
 
 class DataNotfoundError(Exception):
@@ -135,7 +134,7 @@ class GloveEmbeddings():
 
         graph = tf.get_default_graph()
         with tf.Session() as sess:
-            self.tf_saver.restore(sess, tf.train.latest_checkpoint(config.MODEL_DIR))
+            self.tf_saver.restore(sess, tf.train.latest_checkpoint(glove_config.MODEL_DIR))
             __combined_embeddings = graph.get_tensor_by_name("combined_embeddings:0")
             self.__embeddings = __combined_embeddings.eval()
 

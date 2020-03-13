@@ -1,4 +1,4 @@
-""" Program to validate the triplets based on pure GloVe senetnce encoding """
+triplet_configtriplet_config""" Program to validate the triplets based on pure GloVe senetnce encoding """
 
 from threading import Thread
 import os
@@ -15,8 +15,9 @@ import numpy as np
 from numpy import linalg as LA
 import progressbar
 
-from config import Glove as glove_config
-import tf_glove
+from .__init__ import Glove as glove_config
+from .tf_glove import GloveEmbeddings
+from ..Training_Data.__init__ import Triplet as triplet_config
 
 logging.basicConfig(filename=glove_config.SEN_LOG_FILE, format='[ %(asctime)s ] %(message)s',\
 level=logging.INFO)
@@ -41,17 +42,17 @@ class Validate():
 
         self.pass_count ={ 'L1' : 0, 'L2' : 0 , 'min' : 0, 'cheb' : 0, 'cosine' : 0}
 
-        self.sen_file = csv.reader(open(glove_config.TRIPLET_DIR + glove_config.TRIPLET_SEN_DIR + \
-        glove_config.TRIPLET_VALID_DIR + 'triplet_0.csv' ))
+        self.sen_file = csv.reader(open(triplet_config.TRIPLET_DIR + triplet_config.TRIPLET_SEN_DIR + \
+        triplet_config.TRIPLET_VALID_DIR + 'triplet_0.csv' ))
 
-        self.title_file = csv.reader(open(glove_config.TRIPLET_DIR + glove_config.TRIPLET_TITLE_DIR + \
-        glove_config.TRIPLET_VALID_DIR + 'triplet_0.csv' ))
+        self.title_file = csv.reader(open(triplet_config.TRIPLET_DIR + triplet_config.TRIPLET_TITLE_DIR + \
+        triplet_config.TRIPLET_VALID_DIR + 'triplet_0.csv' ))
 
-        with open(glove_config.TRIPLET_SEN_LOG) as f :
+        with open(triplet_config.TRIPLET_SEN_LOG) as f :
             next(csv.reader(f))
             next(csv.reader(f))
             triplet_sen_count = int(next(csv.reader(f))[1])
-        with open(glove_config.TRIPLET_TITLE_LOG) as f :
+        with open(triplet_config.TRIPLET_TITLE_LOG) as f :
             next(csv.reader(f))
             next(csv.reader(f))
             triplet_title_count = int(next(csv.reader(f))[1])
@@ -68,7 +69,7 @@ class Validate():
                 self.validation_sen_limit = triplet_sen_count
                 self.validation_title_limit = triplet_title_count
 
-        self.__embed = tf_glove.GloveEmbeddings(\
+        self.__embed = GloveEmbeddings(\
         train_file=None, \
         saved_model=saved_model, \
         embedding_size=embedding_size,\
